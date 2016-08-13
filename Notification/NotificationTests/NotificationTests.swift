@@ -12,7 +12,7 @@ import XCTest
 class NotificationTests: XCTestCase {
 
 	var vc: ViewController!
-	var downloadComplete = false
+	var downloadCompleted = false
     
     override func setUp() {
         super.setUp()
@@ -20,7 +20,7 @@ class NotificationTests: XCTestCase {
 		let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 		vc = storyboard.instantiateInitialViewController() as! ViewController
 
-		downloadComplete = false
+		downloadCompleted = false
 	}
 
     override func tearDown() {
@@ -28,16 +28,16 @@ class NotificationTests: XCTestCase {
     }
 
 	func downloadFinished(notification: NSNotification) {
-		downloadComplete = true
+		downloadCompleted = true
 	}
     
-    func testDownloadFinishByGrabNotification() {
+    func testDownload_GrabNotification() {
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.downloadFinished(_:)), name:"finished", object: nil)
 
 		let _ = vc.view
 		vc.tapDownload(self)
 		
-		while !downloadComplete && NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate.distantFuture()) {
+		while !downloadCompleted && NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate.distantFuture()) {
 		}
 
 		print("DONE!")

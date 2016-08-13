@@ -10,12 +10,12 @@ import XCTest
 
 class SwiftEarlGreyTest: XCTestCase {
 
-	var downloadComplete = false
+	var downloadCompleted = false
 
     override func setUp() {
         super.setUp()
 
-		downloadComplete = false
+		downloadCompleted = false
     }
     
     override func tearDown() {
@@ -23,10 +23,10 @@ class SwiftEarlGreyTest: XCTestCase {
     }
 
 	func downloadFinished(notification: NSNotification) {
-		downloadComplete = true
+		downloadCompleted = true
 	}
 
-	func testDownloadFinish() {
+	func testDownload() {
 		EarlGrey().selectElementWithMatcher(grey_buttonTitle("Download")).performAction(grey_tap())
 
 		EarlGrey().selectElementWithMatcher(grey_accessibilityID("download indicator")).assertWithMatcher(grey_notVisible())
@@ -34,12 +34,12 @@ class SwiftEarlGreyTest: XCTestCase {
 		print("DONE!")
 	}
 
-    func testDownloadFinishByGrabNotification() {
+    func testDownload_GrabNotification() {
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.downloadFinished(_:)), name:"finished", object: nil)
 
 		EarlGrey().selectElementWithMatcher(grey_buttonTitle("Download")).performAction(grey_tap())
 
-		while !downloadComplete && NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate.distantFuture()) {
+		while !downloadCompleted && NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate.distantFuture()) {
 		}
 
 		print("DONE!")

@@ -27,10 +27,12 @@ class ViewController: UIViewController {
 		let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 		dispatch_async(queue) { () -> Void in
-			sleep(2)
+			sleep(2) // downloading
 			
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
-				NSNotificationCenter.defaultCenter().postNotificationName("finished", object: nil)
+
+				NSNotificationCenter.defaultCenter().postNotificationName("finished", object: nil) // completed
+
 				self.activityIndicator.stopAnimating()
 				self.downloadButton.enabled = true
 			})

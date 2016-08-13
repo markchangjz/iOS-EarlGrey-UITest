@@ -10,7 +10,7 @@ import XCTest
 
 class NotificationUITests: XCTestCase {
 
-	var downloadComplete = false
+	var downloadCompleted = false
         
     override func setUp() {
         super.setUp()
@@ -18,7 +18,7 @@ class NotificationUITests: XCTestCase {
         continueAfterFailure = false
         XCUIApplication().launch()
 
-		downloadComplete = false
+		downloadCompleted = false
     }
     
     override func tearDown() {
@@ -26,10 +26,10 @@ class NotificationUITests: XCTestCase {
     }
 
 	func downloadFinished(notification: NSNotification) {
-		downloadComplete = true
+		downloadCompleted = true
 	}
 
-	func testDownloadFinish() {
+	func testDownload() {
 		XCUIApplication().buttons["Download"].tap()
 
 		let indicator = XCUIApplication().activityIndicators["download indicator"]
@@ -39,14 +39,13 @@ class NotificationUITests: XCTestCase {
 		print("DONE!")
 	}
 
-
-    func testDownloadFinishByGrabNotification() {
-		// Cannot grab notification in XCUITest !!
+    func testDownload_GrabNotification() {
+		// Cannot grab notification in XCUITest!
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.downloadFinished(_:)), name:"finished", object: nil)
 
 		XCUIApplication().buttons["Download"].tap()
 
-//		while !downloadComplete {
+//		while !downloadCompleted {
 //			// Will be infinite loop
 //		}
 

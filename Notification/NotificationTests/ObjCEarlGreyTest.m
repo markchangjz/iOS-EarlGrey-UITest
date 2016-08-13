@@ -15,36 +15,36 @@
 
 @implementation ObjCEarlGreyTest
 
-bool downloadComplete = NO;
+bool downloadCompleted = NO;
 
 - (void)setUp {
     [super setUp];
 
-	downloadComplete = NO;
+	downloadCompleted = NO;
 }
 
 - (void)tearDown {
     [super tearDown];
 }
 
-- (void)downloadFinished: (NSNotification *) notification {
-	downloadComplete = YES;
+- (void)downloadFinished:(NSNotification *) notification {
+	downloadCompleted = YES;
 }
 
-- (void)testDownloadFinish {
+- (void)testDownload {
 	[[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"Download")] performAction:grey_tap()];
 
 	[[EarlGrey selectElementWithMatcher:grey_accessibilityID(@"download indicator")] assertWithMatcher:grey_notVisible()];
 
-	NSLog(@"DONE");
+	NSLog(@"DONE!");
 }
 
-- (void)testDownloadFinishByGrabNotification {
+- (void)testDownload_GrabNotification {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinished:) name:@"finished" object:nil];
 
 	[[EarlGrey selectElementWithMatcher:grey_buttonTitle(@"Download")] performAction:grey_tap()];
 
-	while (!downloadComplete && [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
+	while (!downloadCompleted && [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
 
 	NSLog(@"DONE!");
 }
