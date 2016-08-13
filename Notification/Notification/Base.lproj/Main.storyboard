@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Notification" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOe-87-a6t">
+                                <rect key="frame" x="266" y="172" width="69" height="30"/>
+                                <state key="normal" title="Download"/>
+                                <connections>
+                                    <action selector="tapDownload:" destination="BYZ-38-t0r" eventType="touchUpInside" id="duz-69-I6G"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="B1t-6t-JJA">
+                                <rect key="frame" x="290" y="111" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hOe-87-a6t" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="152" id="1GL-Ai-nWd"/>
+                            <constraint firstItem="hOe-87-a6t" firstAttribute="top" secondItem="B1t-6t-JJA" secondAttribute="bottom" constant="41" id="AQv-fj-hvy"/>
+                            <constraint firstItem="B1t-6t-JJA" firstAttribute="centerX" secondItem="hOe-87-a6t" secondAttribute="centerX" id="Aaa-Rd-JrN"/>
+                            <constraint firstItem="hOe-87-a6t" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xn5-AC-9bN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="B1t-6t-JJA" id="kzD-5h-JF3"/>
+                        <outlet property="downloadButton" destination="hOe-87-a6t" id="gax-9C-g7A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
